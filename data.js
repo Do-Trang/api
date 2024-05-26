@@ -3,7 +3,6 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const Student = require('./src/models/student');
 
-// Kết nối đến MongoDB
 const mongoURI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/student';
 
 mongoose.connect(mongoURI, {
