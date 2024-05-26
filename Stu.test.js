@@ -66,45 +66,6 @@ const {
 
             expect(mockStudent.save).toHaveBeenCalled();
         });
-    //     it('should create a new student', async () => {
-    //         const newStudent = { name: 'New Student', gender: 'female', university: 'ITMO' };
-    //         const mockStudent = { ...newStudent, _id: '3' }; // Add an ID for the created student
-    //         console.log('mockStudent:', mockStudent); // Log mockStudent for debugging
-    //         const saveMock = jest.fn().mockResolvedValue(mockStudent);
-    //         Student.prototype.save = saveMock; // Mock the save method on the prototype
-            
-    //         const req = { body: newStudent };
-    //         const res = { 
-    //           status: jest.fn().mockReturnThis(),
-    //           json: jest.fn()
-    //         };
-            
-    //         await createStudent(req, res);
-            
-    //         expect(saveMock).toHaveBeenCalled(); // Verify save was called
-    //         expect(res.status).toHaveBeenCalledWith(201);
-    //         console.log('res.json args:', res.json.mock.calls[0]); // Log arguments passed to res.json
-    //         expect(res.json).toHaveBeenCalledWith(expect.objectContaining(mockStudent));
-    //       });
-          
-          
-          
-      
-    //     it('should handle errors', async () => {
-    //       const error = new Error('Something went wrong');
-    //       const saveMock = jest.fn().mockRejectedValue(error);
-    //       Student.prototype.save = saveMock; // Mock the save method on the prototype
-      
-    //       const res = { 
-    //         status: jest.fn().mockReturnThis(), // Mocking the status method
-    //         send: jest.fn()
-    //       };
-      
-    //       await createStudent(mockReq, res);
-      
-    //       expect(res.status).toHaveBeenCalledWith(500); // Ensure status method is called with 500 for error
-    //       expect(res.send).toHaveBeenCalledWith(error);
-    //     });
       });
       
   
@@ -137,14 +98,14 @@ const {
     describe('deleteStudent API', () => {
       it('should delete a student by ID', async () => {
         const studentId = '1';
-        Student.findByIdAndDelete.mockResolvedValue({ _id: studentId }); // Resolve without returning any data
+        Student.findByIdAndDelete.mockResolvedValue({ _id: studentId }); 
     
         mockReq.params.id = studentId;
     
         await deleteStudent(mockReq, mockRes);
     
         expect(mockRes.status).toHaveBeenCalledWith(204);
-         expect(mockRes.send).toHaveBeenCalledWith(); // Expecting status 204 for successful deletion
+         expect(mockRes.send).toHaveBeenCalledWith(); 
     });
   
       it('should return 404 if student not found', async () => {
