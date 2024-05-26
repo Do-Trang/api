@@ -17,5 +17,20 @@ services:
     volumes:
       - mongo-data:/data/db
 
+  seed:
+    build: .
+    depends_on:
+      - mongo
+    command: ["node", "data.js"]
+
+  web:
+    build: ../web
+    ports:
+      - "8090:80"
+    depends_on:
+      - app
+    environment:
+      - API_URL=http://app:3001/api/students
+
 volumes:
   mongo-data:
