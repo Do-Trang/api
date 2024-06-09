@@ -13,7 +13,7 @@ exports.createStudent = async (req, res) => {
   try {
     const newStudent = new Student(req.body);
     const student = await newStudent.save();
-    res.status(201).json(student.toObject()); // Ensure toObject() is used to convert Mongoose document to plain object
+    res.status(201).json(student.toObject()); 
   } catch (err) {
     res.status(500).send(err);
   }

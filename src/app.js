@@ -8,7 +8,6 @@ const studentRoutes = require('./routes/studentRoutes');
 const app = express();
 app.use(express.json());
 
-// Allow requests from 'http://localhost:8090'
 const corsOptions = {
   origin: 'http://localhost:8090',
   optionsSuccessStatus: 200
