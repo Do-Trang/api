@@ -1,29 +1,12 @@
-api:
-  image: trangdt25/api-app:v1.0
-  port: 3001
-  nodePort: 30081
-  mongoUri: mongodb://mongo:27017/student
-  apiUrl: http://app:3001/api/students
+appName: myhelmapp
 
-mongo:
-  image: mongo:latest
-  port: 27017
-  nodePort: 27018
-  volume:
-    persistentVolumeClaim:
-      claimName: mongo-data
+port: 80
 
-seed:
-  image: trangdt25/api-seed:v1.0
-  command: ["node", "data.js"]
-  dependsOn:
-    - mongo
+configmap:
+  name: myhelmapp-configmap-v1
+  data:
+    CUSTOM_HEADER: 'This app was deployed with helm!'
 
-web:
-  image: trangdt25/api-web:v1.0
-  port: 80
-  nodePort: 8090
-  dependsOn:
-    - app
-  environment:
-    - API_URL=http://app:3001/api/students
+image:
+  name: trangdt25/api-web
+  tag: latest

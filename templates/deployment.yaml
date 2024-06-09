@@ -1,24 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-deployment
+  name: {{ .Values.appName }}
+  labels:
+    app: {{ .Values.appName }}
 spec:
-  replicas: 3
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      app: api
+      app: {{ .Values.appName }}
+      tier: frontend
   template:
     metadata:
       labels:
-        app: api
-    spec:
+        app: {{ .Values.appName }}
+        tier: frontend
+    spec: # Pod spec
       containers:
-      - name: api
-        image: {{.Values.api.image }}
+      - name: mycontainer
+        image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
         ports:
-        - containerPort: {{.Values.api.port }}
-        environment:
-        - name: MONGO_URI
-          value: {{.Values.api.mongoUri }}
-        - name: API_URL
-          value: {{.Values.api.apiUrl }}
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: {{ .Values.configmap.name }}
+        resources:
+          requests:
+            memory: "16Mi" 
+            cpu: "50m"    # 500milliCPUs (1/2 CPU)
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
