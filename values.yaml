@@ -1,5 +1,5 @@
 api:
-  image: my-api-image:latest
+  image: trangdt25/api-app:v1.0
   port: 3001
   nodePort: 30081
   mongoUri: mongodb://mongo:27017/student
@@ -14,13 +14,13 @@ mongo:
       claimName: mongo-data
 
 seed:
-  image: my-seed-image:latest
+  image: trangdt25/api-seed:v1.0
   command: ["node", "data.js"]
   dependsOn:
     - mongo
 
 web:
-  image: my-web-image:latest
+  image: trangdt25/api-web:v1.0
   port: 80
   nodePort: 8090
   dependsOn:
