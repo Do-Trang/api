@@ -17,7 +17,6 @@ spec:
         image: {{.Values.api.image }}
         ports:
         - containerPort: {{.Values.api.port }}
-        nodePort: {{.Values.api.nodePort }}
         environment:
         - name: MONGO_URI
           value: {{.Values.api.mongoUri }}
