@@ -7,7 +7,6 @@ spec:
     app: api
   ports:
   - name: http
-    port: {{.Values.api.port }}
-    targetPort: {{.Values.api.port }}
-    nodePort: {{.Values.api.nodePort }}
+    port: 30081
+    targetPort: 3001
   type: NodePort
