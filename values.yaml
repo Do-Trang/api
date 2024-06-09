@@ -1,0 +1,29 @@
+api:
+  image: my-api-image:latest
+  port: 3001
+  nodePort: 30081
+  mongoUri: mongodb://mongo:27017/student
+  apiUrl: http://app:3001/api/students
+
+mongo:
+  image: mongo:latest
+  port: 27017
+  nodePort: 27018
+  volume:
+    persistentVolumeClaim:
+      claimName: mongo-data
+
+seed:
+  image: my-seed-image:latest
+  command: ["node", "data.js"]
+  dependsOn:
+    - mongo
+
+web:
+  image: my-web-image:latest
+  port: 80
+  nodePort: 8090
+  dependsOn:
+    - app
+  environment:
+    - API_URL=http://app:3001/api/students

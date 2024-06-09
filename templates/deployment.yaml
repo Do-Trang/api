@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: {{.Values.api.image }}
+        ports:
+        - containerPort: {{.Values.api.port }}
+        nodePort: {{.Values.api.nodePort }}
+        environment:
+        - name: MONGO_URI
+          value: {{.Values.api.mongoUri }}
+        - name: API_URL
+          value: {{.Values.api.apiUrl }}
