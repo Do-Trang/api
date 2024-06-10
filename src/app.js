@@ -26,9 +26,9 @@ mongoose.connect(mongoURI, {
   console.error('Error connecting to MongoDB', err);
 });
 
-app.use('/api/students', studentRoutes);
+app.use('/', studentRoutes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
