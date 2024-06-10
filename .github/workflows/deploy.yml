@@ -59,4 +59,4 @@ jobs:
           git push --set-upstream origin main
           git push --set-upstream https://user:$GITHUB_TOKEN@github.com/Do-Trang/api_config main
         env:
-          GITHUB_TOKEN: ${{ secrets.WEB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
