@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-  origin: 'http://localhost:8090',
+  origin: 'http://192.168.56.10:32135',
   optionsSuccessStatus: 200
 };
 
