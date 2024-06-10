@@ -11,4 +11,4 @@ configmap:
 
 image:
   name: trangdt25/api-app
-  tag: latest
+  tag: v1.0
