@@ -1,6 +1,8 @@
-appName: myhelmapp
+appName: api
 
-port: 80
+port: 3000
+
+namespace: api
 
 configmap:
   name: myhelmapp-configmap-v1
@@ -8,5 +10,5 @@ configmap:
     CUSTOM_HEADER: 'This app was deployed with helm!'
 
 image:
-  name: trangdt25/api-web
+  name: trangdt25/api-app
   tag: latest
