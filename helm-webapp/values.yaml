@@ -1,6 +1,6 @@
 appName: api
 
-port: 3000
+port: 4000
 
 namespace: api
 
@@ -10,5 +10,5 @@ configmap:
     CUSTOM_HEADER: 'This app was deployed with helm!'
 
 image:
-  name: trangdt25/api-app
-  tag: v1.0
+  name: trangdt25/myapivdt
+  tag: latest
