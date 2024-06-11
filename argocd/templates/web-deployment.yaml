@@ -28,7 +28,7 @@ spec:
         - env:
             - name: API_URL
               value: http://app:3001/api/students
-          image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
+          image: trangdt25/webvdt
           name: web
           ports:
             - containerPort: {{ .Values.port }}

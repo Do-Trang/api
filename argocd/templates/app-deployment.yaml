@@ -28,7 +28,7 @@ spec:
         - env:
             - name: MONGO_URI
               value: mongodb://mongo:27017/student
-          image: app
+          image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
           name: app
           ports:
             - containerPort: 3000

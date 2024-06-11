@@ -5,6 +5,8 @@ services:
     build: .
     ports:
       - "3001:3000"
+    labels:
+      - kompose.service.type: nodeport
     depends_on:
       - mongo
     environment:
@@ -27,6 +29,8 @@ services:
     build: ../web
     ports:
       - "8090:80"
+    labels:
+    - kompose.service.type: nodeport
     depends_on:
       - app
     environment:
