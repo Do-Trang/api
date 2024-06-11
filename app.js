@@ -9,10 +9,13 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-  origin: 'http://192.168.56.10:31090',
+  origin: [
+    'http://192.168.56.10:31090',
+    'http://192.168.56.11:31090',
+    'http://192.168.56.12:31090'
+  ],
   optionsSuccessStatus: 200
 };
-
 app.use(cors(corsOptions));
 
 const mongoURI = process.env.MONGO_URI;
