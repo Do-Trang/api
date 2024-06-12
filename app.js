@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const studentRoutes = require('./src/routes/studentRoutes');
+const apiLimiter = require('./rateLimit');
 
 const app = express();
 app.use(express.json());
@@ -29,7 +30,7 @@ mongoose.connect(mongoURI, {
   console.error('Error connecting to MongoDB', err);
 });
 
-app.use('/api/students', studentRoutes);
+app.use('/api/students', apiLimiter, studentRoutes);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
