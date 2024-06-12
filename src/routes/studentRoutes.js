@@ -3,9 +3,12 @@ const studentController = require('../controllers/studentController');
 const { authenticateToken, authorizeRoles } = require('../../auth');
 const router = express.Router();
 
-router.get('/', authenticateToken, studentController.listStudents);
+// Public routes
+router.get('/', studentController.listStudents);
+router.get('/:id', studentController.getStudent);
+
+// Protected routes
 router.post('/', authenticateToken, authorizeRoles(['admin']), studentController.createStudent);
-router.get('/:id', authenticateToken, studentController.getStudent);
 router.put('/:id', authenticateToken, authorizeRoles(['admin']), studentController.updateStudent);
 router.delete('/:id', authenticateToken, authorizeRoles(['admin']), studentController.deleteStudent);
 

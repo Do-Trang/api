@@ -4,7 +4,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const studentRoutes = require('./src/routes/studentRoutes');
-const { authenticateToken, authorizeRoles } = require('./auth');
 
 const app = express();
 app.use(express.json());
@@ -30,13 +29,7 @@ mongoose.connect(mongoURI, {
   console.error('Error connecting to MongoDB', err);
 });
 
-// Secure the student routes
-app.use('/api/students', authenticateToken, studentRoutes);
-
-// Sample route demonstrating role-based access
-app.get('/api/admin', authenticateToken, authorizeRoles(['admin']), (req, res) => {
-  res.json({ message: 'Welcome Admin!' });
-});
+app.use('/api/students', studentRoutes);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
